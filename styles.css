@@ -1,0 +1,15 @@
+body { 
+  margin: 3px; 
+  background-color: black;
+}
+canvas { 
+  display: block; 
+}
+.scorebar {
+  position: absolute;
+  width: 100%;
+  background-color: rgba(163, 165, 168, 0.5);
+  display: flex;
+  justify-content: space-around;
+  font-size: 1.5rem;
+}
