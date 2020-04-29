@@ -30,9 +30,9 @@
     "webpack-obj-loader": "^1.0.4"
   },
   "scripts": {
-    "build": "webpack --config webpack.prod.js",
+    "build": "webpack",
     "watch": "webpack --watch",
-    "start": "webpack-dev-server --config webpack.dev.js"
+    "start": "webpack-dev-server"
   },
   "author": "",
   "license": "ISC",
