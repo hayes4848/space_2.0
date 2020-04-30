@@ -7,7 +7,7 @@ import { buildTunnel } from './tunnel';
 import {buildSofiLogo } from './sofi_logo';
 import { createShot } from './laser_beam';
 import { createExplosion } from './explosion';
-import { textGenerator } from './text-generator';
+import { textGenerator } from './text_generator';
 import '../styles.css';
 
 let gameSpeed = 5;

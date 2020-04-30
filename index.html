@@ -1,13 +1,24 @@
-<head>
-  <meta charset="utf-8">
-  <title>Star Wars SoFi</title>
-<link rel="stylesheet" type="text/css" href="./styles.css">
-</head>
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Star Wars SoFi</title>
+    <link rel="stylesheet" type="text/css" href="./styles.css">
+    <script src="./asteroids.bundle.js"></script>
+    <script src="./explosion.bundle.js"></script>
+    <script src="./key_events.bundle.js"></script>
+    <script src="./laser_beam.bundle.js"></script>
+    <script src="./load_ship.bundle.js"></script>
+    <script src="./sofi_logo.bundle.js"></script>
+    <script src="./text_generator.bundle.js"></script>
+    <script src="./tunnel.bundle.js"></script>
+  </head>
 
-<body>
-  <div class="scorebar">
-    <div class="health-container">Health: <span id="health-box">100</span>%</div>
-    <div class="score-container">Score: <span id="score-box">0</span></div>
-  </div>
-  <script src="dist/main.js"></script>
-</body>
+  <body>
+    <div class="scorebar">
+      <div class="health-container">Health: <span id="health-box">100</span>%</div>
+      <div class="score-container">Score: <span id="score-box">0</span></div>
+    </div>
+    <script src="./app.bundle.js"></script>
+  </body>
+</html>
