@@ -2,6 +2,7 @@ const path = require('path');
 
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
+const CopyPlugin = require('copy-webpack-plugin');
 
 module.exports = {
   entry: {
@@ -23,10 +24,15 @@ module.exports = {
       title: 'Star Wars SoFi',
       template: './index.html',
     }),
+    new CopyPlugin([{
+      from: './src/images',
+      to: 'images'
+  }]),
   ],
   output: {
     filename: '[name].bundle.js',
     path: path.resolve(__dirname, 'dist'),
+    publicPath: '/',
   },
   devServer: {
     contentBase: './dist',
@@ -41,13 +47,13 @@ module.exports = {
         ],
       },
       {
-        test: /\.(png|svg|jpg|gif)$/,
+        test: /\.(svg|jpg|gif)$/,
         use: [
           'file-loader',
         ]
       },
       {
-        test: /\.obj$/,
+        test: /\.(png|obj)$/,
         use: ['url-loader',]
       }, 
       {

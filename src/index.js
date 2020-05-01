@@ -28,6 +28,7 @@ let explosions = [];
 let words = [];
 let health = 100;
 let score = 0;
+let gameInSession = false;
 
 
 camera.position.z = 200;
@@ -140,7 +141,9 @@ let animate = () => {
     if(!(spaceship === undefined)){
       if(logo.hitbox.intersectsBox(spaceship.hitbox)){
         logo.position.set(randomNumber(-150, 150), randomNumber(-125, 125), -2500);
-        score += 25;
+        if(gameInSession){
+          score += 25;
+        }
         document.getElementById('score-box').innerHTML = score;
         let text = textGenerator(spaceship.position.x, spaceship.position.y, spaceship.position.z, '+25');
         scene.add(text);
@@ -158,15 +161,17 @@ let animate = () => {
       rock.position.set(randomNumber(-150, 150), randomNumber(-125, 125), -2500);
     }
 
-    if(rock.hitbox.intersectsBox(spaceship.hitbox)){
-      spaceship.children[0].material.color.set(0xb80e06);
-      spaceship.children[0].material.needsUpdate = true;
-      rock.position.set(randomNumber(-150, 150), randomNumber(-125, 125), -2500);
-      setTimeout(() => {
-        spaceship.children[0].material.color.set(0xffffff);
-      }, 200);
-      health -=10;
-      document.getElementById('health-box').innerHTML = health;
+    if(gameInSession){
+      if(rock.hitbox.intersectsBox(spaceship.hitbox)){
+        spaceship.children[0].material.color.set(0xb80e06);
+        spaceship.children[0].material.needsUpdate = true;
+        rock.position.set(randomNumber(-150, 150), randomNumber(-125, 125), -2500);
+        setTimeout(() => {
+          spaceship.children[0].material.color.set(0xffffff);
+        }, 200);
+        health -=10;
+        document.getElementById('health-box').innerHTML = health;
+      }
     }
   });
 
@@ -197,6 +202,9 @@ let animate = () => {
   if(health === 0) {
     spaceship.position.set(0,0, -100);
     camera.position.set(0,0,200);
+    gameSpeed = 5;
+    gameInSession = false;
+    document.getElementsByClassName('end-game')[0].classList.remove('no-show');
   }
 
   TWEEN.update();
@@ -209,17 +217,29 @@ let animate = () => {
   }
   renderer.render( scene, camera );
   shotFired = false;
-  gameSpeed = updateGameSpeed(score);
+  if(gameInSession){
+    gameSpeed = updateGameSpeed(score);
+  }
 }
 
 animate();
 
+document.getElementById('start-game').onclick = () => {
+  gameInSession = true;
+  document.getElementsByClassName('game-instructions')[0].classList.add('no-show');
+};
 
+document.getElementById('restart-game').onclick = () => {
+  gameInSession = true;
+  score = 0;
+  health = 100;
+  document.getElementsByClassName('end-game')[0].classList.add('no-show');
+};
 
- window.addEventListener('keydown', (event) => {
-   [rotationX, rotationY, shotFired] = handleKeyDown(event, spaceship)
-  }, false);
+window.addEventListener('keydown', (event) => {
+  [rotationX, rotationY, shotFired] = handleKeyDown(event, spaceship)
+}, false);
 
- window.addEventListener('keyup', (event) => {
-  [rotationX, rotationY, shotFired] = handleKeyUp(event, spaceship)
-  }, false); 
+window.addEventListener('keyup', (event) => {
+[rotationX, rotationY, shotFired] = handleKeyUp(event, spaceship)
+}, false); 
