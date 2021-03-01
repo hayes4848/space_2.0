@@ -11,7 +11,7 @@
     "browserify": "^16.5.1",
     "express": "^4.17.1",
     "font-loader": "^0.1.2",
-    "three": "^0.115.0",
+    "three": "^0.125.0",
     "watchify": "^3.11.1"
   },
   "devDependencies": {
