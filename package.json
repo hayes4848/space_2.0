@@ -9,7 +9,7 @@
   "dependencies": {
     "@tweenjs/tween.js": "^18.3.0",
     "browserify": "^16.5.1",
-    "express": "^4.17.1",
+    "express": "^4.17.3",
     "font-loader": "^0.1.2",
     "three": "^0.115.0",
     "watchify": "^3.11.1"
